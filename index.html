@@ -11,7 +11,63 @@
     <link rel="stylesheet" href="fontawesome/css/all.min.css">
     <link rel="stylesheet" href="css/receitas.css">
 </head>
+<body> 
+  ... <!-- VLibras -->
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
+</body>
+
 <body>
+        <!-- Botão de Acessibilidade -->
+<button id="accessibility-btn" class="accessibility-btn">
+    <i class="fas fa-universal-access"></i>
+</button>
+
+<!-- Painel -->
+<div id="accessibility-panel" class="accessibility-panel">
+
+    <div class="panel-header">
+        <h3>Acessibilidade</h3>
+
+        <button id="close-panel">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <div class="panel-content">
+
+        <div class="section-title">
+            Ajuste de Cor
+        </div>
+
+        <button class="access-option" onclick="setTheme('default')">
+            Modo Padrão
+        </button>
+
+        <button class="access-option" onclick="setTheme('dark')">
+            Modo Escuro
+        </button>
+
+        <button class="access-option" onclick="setTheme('contrast-light')">
+            Alto Contraste Claro
+        </button>
+
+        <button class="access-option" onclick="setTheme('contrast-dark')">
+            Alto Contraste Escuro
+        </button>
+
+    </div>
+
+</div>
+    <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
     <header class="site-header">
         <nav class="topbar" aria-label="Navegacao principal">
             <a class="brand" href="index.html" aria-label="Receitas do Chef">
@@ -36,7 +92,7 @@
         </section>
     </header>
 
-    <main class="main-content">
+    <main class="main-content" id="main-content" tabindex="-1">
         <section class="toolbar" aria-label="Filtros de receitas">
             <div>
                 <p class="section-kicker">Catalogo</p>
