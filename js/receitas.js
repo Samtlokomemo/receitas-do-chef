@@ -504,3 +504,53 @@ document.addEventListener("keydown", (event) => {
 });
 
 setActiveFilter("todos");
+
+
+const btnAccessibility = document.getElementById("accessibility-btn");
+const menuAccessibility = document.getElementById("accessibility-menu");
+
+btnAccessibility.addEventListener("click", () => {
+    menuAccessibility.classList.toggle("show");
+});
+
+function setTheme(theme) {
+
+    document.body.classList.remove(
+        "dark-mode",
+        "contrast-light",
+        "contrast-dark"
+    );
+
+    if (theme === "dark") {
+        document.body.classList.add("dark-mode");
+    }
+
+    if (theme === "contrast-light") {
+        document.body.classList.add("contrast-light");
+    }
+
+    if (theme === "contrast-dark") {
+        document.body.classList.add("contrast-dark");
+    }
+
+    localStorage.setItem("theme", theme);
+}
+
+// Carrega tema salvo
+const savedTheme = localStorage.getItem("theme");
+
+if (savedTheme) {
+    setTheme(savedTheme);
+}
+
+const btn = document.getElementById("accessibility-btn");
+const panel = document.getElementById("accessibility-panel");
+const closeBtn = document.getElementById("close-panel");
+
+btn.addEventListener("click", () => {
+    panel.classList.add("open");
+});
+
+closeBtn.addEventListener("click", () => {
+    panel.classList.remove("open");
+});
