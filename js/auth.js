@@ -4,13 +4,6 @@ const USERS = {
     name: "Chef Teste",
     avatar: "CT",
     bio: "Amante de cozinha caseira e receitas praticas.",
-    favorites: ["1", "2", "3"],
-  },
-  "maria@email.com": {
-    password: "1234",
-    name: "Maria Silva",
-    avatar: "MS",
-    bio: "Cozinheira por hobby, explorando sabores novos.",
     favorites: [],
   },
 };
@@ -29,7 +22,10 @@ function login(email, password) {
 }
 
 function logout() {
-  localStorage.removeItem("loggedUser");
+  if (confirm("Deseja sair da conta?")) {
+    localStorage.removeItem("loggedUser");
+    window.location.reload();
+  }
 }
 
 function toggleFavorite(recipeId) {
@@ -61,8 +57,7 @@ function updateTopbar() {
   const user = getLoggedUser();
   if (user) {
     link.href = "perfil.html";
-    link.textContent = user.name;
-    link.innerHTML = `<i class="fas fa-user" aria-hidden="true"></i> ${user.name}`;
+    link.textContent = `${user.name}`;
   } else {
     link.href = "login.html";
     link.textContent = "Login";
