@@ -166,9 +166,12 @@ color: #999999;
 .toggle-password {
 position: absolute;
 right: 12px;
+background: none;
+border: none;
 color: #888888;
 cursor: pointer;
 font-size: 14px;
+padding: 0;
 }
 
 .forgot-password {

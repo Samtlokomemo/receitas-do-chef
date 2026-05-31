@@ -1,50 +1,86 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Perfil — Receitas do Chef</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="fontawesome/css/all.min.css">
-  <link rel="stylesheet" href="css/receitas.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Perfil — Receitas do Chef</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="fontawesome/css/all.min.css">
+<link rel="stylesheet" href="css/receitas.css">
+<link rel="stylesheet" href="css/accessibility.css">
 </head>
 <body>
 
-  <header class="site-header">
-    <nav class="topbar" aria-label="Navegacao principal">
-      <a class="brand" href="index.html" aria-label="Receitas do Chef">
-        <span class="brand-mark"><i class="fas fa-utensils" aria-hidden="true"></i></span>
-        <span>Receitas do Chef</span>
-      </a>
-      <a class="login-link" href="perfil.html">Perfil</a>
-    </nav>
-  </header>
+<!-- VLibras -->
+<div vw class="enabled">
+<div vw-access-button class="active"></div>
+<div vw-plugin-wrapper>
+<div class="vw-plugin-top-wrapper"></div>
+</div>
+</div>
 
-  <main class="profile-main">
-    <div class="profile-card">
-      <div class="profile-avatar" id="profile-avatar"></div>
-      <h1 id="profile-name"></h1>
-      <p class="profile-email" id="profile-email"></p>
-      <p class="profile-bio" id="profile-bio"></p>
-      <button class="profile-logout-btn" id="logout-btn" type="button">
-        <i class="fas fa-sign-out-alt" aria-hidden="true"></i> Sair
-      </button>
-    </div>
+<!-- Skip Link -->
+<a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
 
-    <section class="profile-section">
-      <p class="section-kicker">Suas receitas</p>
-      <h2>Receitas favoritas</h2>
-      <div class="status-message" id="fav-status" role="status" aria-live="polite"></div>
-      <div class="recipes-grid" id="fav-grid" aria-label="Receitas favoritas"></div>
-    </section>
-  </main>
+<header class="site-header">
+<nav class="topbar" aria-label="Navegacao principal">
+<a class="brand" href="index.html" aria-label="Receitas do Chef">
+<span class="brand-mark"><i class="fas fa-utensils" aria-hidden="true"></i></span>
+<span>Receitas do Chef</span>
+</a>
+<a class="login-link" href="perfil.html">Perfil</a>
+</nav>
+</header>
 
-  <footer class="site-footer">
-    <p>Receitas do Chef — uma selecao minimalista para cozinhar melhor.</p>
-  </footer>
+<main class="profile-main" id="main-content" tabindex="-1">
+<div class="profile-card">
+<div class="profile-avatar" id="profile-avatar"></div>
+<h1 id="profile-name"></h1>
+<p class="profile-email" id="profile-email"></p>
+<p class="profile-bio" id="profile-bio"></p>
+<button class="profile-logout-btn" id="logout-btn" type="button" aria-label="Sair da conta">
+<i class="fas fa-sign-out-alt" aria-hidden="true"></i> Sair
+</button>
+</div>
 
+<section class="profile-section" aria-labelledby="fav-title">
+<p class="section-kicker">Suas receitas</p>
+<h2 id="fav-title">Receitas favoritas</h2>
+<div class="status-message" id="fav-status" role="status" aria-live="polite"></div>
+<div class="recipes-grid" id="fav-grid" aria-label="Receitas favoritas"></div>
+</section>
+</main>
+
+<footer class="site-footer">
+<p>Receitas do Chef — uma selecao minimalista para cozinhar melhor.</p>
+</footer>
+
+<!-- Botão de Acessibilidade -->
+<button id="accessibility-btn" class="accessibility-btn" aria-label="Opções de acessibilidade" aria-expanded="false">
+<i class="fas fa-universal-access"></i>
+</button>
+
+<!-- Painel de Acessibilidade -->
+<div id="accessibility-panel" class="accessibility-panel" role="dialog" aria-label="Painel de acessibilidade">
+<div class="panel-header">
+<h3>Acessibilidade</h3>
+<button id="close-panel" aria-label="Fechar painel de acessibilidade">
+<i class="fas fa-times"></i>
+</button>
+</div>
+<div class="panel-content">
+<div class="section-title">Ajuste de Cor</div>
+<button class="access-option" onclick="setTheme('default')">Modo Padrão</button>
+<button class="access-option" onclick="setTheme('dark')">Modo Escuro</button>
+<button class="access-option" onclick="setTheme('contrast-light')">Alto Contraste Claro</button>
+<button class="access-option" onclick="setTheme('contrast-dark')">Alto Contraste Escuro</button>
+</div>
+</div>
+
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+<script>new window.VLibras.Widget('https://vlibras.gov.app');</script>
 <script src="js/auth.js"></script>
 <script src="js/perfil.js"></script>
 </body>
