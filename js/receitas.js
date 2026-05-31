@@ -506,56 +506,54 @@ document.addEventListener("keydown", (event) => {
 setActiveFilter("todos");
 
 
-const accessibilityBtn =
-document.getElementById("accessibility-btn");
 
-const accessibilityPanel =
-document.getElementById("accessibility-panel");
 
-const closePanel =
-document.getElementById("close-panel");
 
-/* Abrir painel */
+// Navegação por teclado
 
-accessibilityBtn.addEventListener("click", () => {
-    accessibilityPanel.classList.add("open");
-});
+let lastFocusedElement = null;
 
-/* Fechar painel */
+function openModal() {
+    lastFocusedElement = document.activeElement;
+    
+    elements.modal.classList.add("open");
+    elements.modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
 
-closePanel.addEventListener("click", () => {
-    accessibilityPanel.classList.remove("open");
-});
-
-/* Trocar tema */
-
-function setTheme(theme){
-
-    document.body.classList.remove(
-        "dark-mode",
-        "contrast-light",
-        "contrast-dark"
-    );
-
-    if(theme === "dark"){
-        document.body.classList.add("dark-mode");
-    }
-
-    if(theme === "contrast-light"){
-        document.body.classList.add("contrast-light");
-    }
-
-    if(theme === "contrast-dark"){
-        document.body.classList.add("contrast-dark");
-    }
-
-    localStorage.setItem("theme", theme);
+    setTimeout(() => {
+        const closeButton = elements.modal.querySelector('.modal-close');
+        if (closeButton) closeButton.focus();
+    }, 50);
 }
 
-/* Carregar tema salvo */
+function closeModal() {
+    elements.modal.classList.remove("open");
+    elements.modal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
 
-const savedTheme = localStorage.getItem("theme");
-
-if(savedTheme){
-    setTheme(savedTheme);
+    if (lastFocusedElement) {
+        lastFocusedElement.focus();
+    }
 }
+
+elements.modal.addEventListener('keydown', (event) => {
+    if (event.key !== 'Tab') return;
+
+    const focusableElements = elements.modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    if (focusableElements.length === 0) return;
+
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+
+    if (event.shiftKey) {
+        if (document.activeElement === firstElement) {
+            lastElement.focus();
+            event.preventDefault(); 
+        }
+    } else {
+        if (document.activeElement === lastElement) {
+            firstElement.focus();
+            event.preventDefault(); 
+        }
+    }
+});
