@@ -504,3 +504,56 @@ document.addEventListener("keydown", (event) => {
 });
 
 setActiveFilter("todos");
+
+
+
+
+
+// Navegação por teclado
+
+let lastFocusedElement = null;
+
+function openModal() {
+    lastFocusedElement = document.activeElement;
+    
+    elements.modal.classList.add("open");
+    elements.modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+
+    setTimeout(() => {
+        const closeButton = elements.modal.querySelector('.modal-close');
+        if (closeButton) closeButton.focus();
+    }, 50);
+}
+
+function closeModal() {
+    elements.modal.classList.remove("open");
+    elements.modal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+
+    if (lastFocusedElement) {
+        lastFocusedElement.focus();
+    }
+}
+
+elements.modal.addEventListener('keydown', (event) => {
+    if (event.key !== 'Tab') return;
+
+    const focusableElements = elements.modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    if (focusableElements.length === 0) return;
+
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+
+    if (event.shiftKey) {
+        if (document.activeElement === firstElement) {
+            lastElement.focus();
+            event.preventDefault(); 
+        }
+    } else {
+        if (document.activeElement === lastElement) {
+            firstElement.focus();
+            event.preventDefault(); 
+        }
+    }
+});
