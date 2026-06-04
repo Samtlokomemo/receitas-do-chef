@@ -138,5 +138,51 @@
 
     <script src="js/auth.js"></script>
     <script src="js/receitas.js"></script>
+ 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <script>
+      gsap.registerPlugin(ScrollTrigger);
+
+      const gridReceitas = document.getElementById('recipes-grid');
+
+      if (gridReceitas) {
+        
+        function rodarAnimacao() {
+          
+          ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+
+          gsap.set("#recipes-grid > *", { opacity: 0, y: 40 });
+
+          gsap.to("#recipes-grid > *", {
+            scrollTrigger: {
+              trigger: "#recipes-grid",
+              start: "top 90%",
+              toggleActions: "play none none none"
+            },
+            y: 0,              
+            opacity: 1,        
+            duration: 0.6,     
+            stagger: 0.1,      
+            ease: "power2.out",
+            clearProps: "all"  
+          });
+        }
+
+        
+        const observer = new MutationObserver((mutationsList) => {
+          if (gridReceitas.children.length > 0) {
+        
+            setTimeout(() => {
+              rodarAnimacao();
+              ScrollTrigger.refresh(); 
+            }, 100);
+          }
+        });
+
+        observer.observe(gridReceitas, { childList: true });
+      }
+    </script>
 </body>
 </html>
