@@ -417,6 +417,52 @@ function detailMarkup(recipe) {
         </div>
     `;
 }
+function animateRecipeContent() {
+    if (!window.gsap || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        return;
+    }
+
+    const title = elements.modalContent.querySelector("#modal-title");
+    const sections = elements.modalContent.querySelectorAll(".detail-block");
+    const listItems = elements.modalContent.querySelectorAll(".detail-block li");
+    const preparation = elements.modalContent.querySelector(".preparation");
+
+    const tl = window.gsap.timeline({ defaults: { ease: "power2.out" } });
+
+    if (title) {
+        tl.from(title, {
+            opacity: 0,
+            y: 20,
+            duration: 0.4
+        });
+    }
+
+    if (sections.length) {
+        tl.from(sections, {
+            opacity: 0,
+            y: 20,
+            duration: 0.4,
+            stagger: 0.15
+        }, "-=0.2");
+    }
+
+    if (listItems.length) {
+        tl.from(listItems, {
+            opacity: 0,
+            x: -15,
+            duration: 0.3,
+            stagger: 0.05
+        }, "-=0.2");
+    }
+
+    if (preparation) {
+        tl.from(preparation, {
+            opacity: 0,
+            y: 15,
+            duration: 0.4
+        }, "-=0.2");
+    }
+}
 
 async function showRecipeDetails(id) {
     elements.modalContent.innerHTML = '<div class="modal-body"><p class="preparation">Carregando detalhes...</p></div>';
@@ -431,6 +477,7 @@ async function showRecipeDetails(id) {
         const payload = await response.json();
         const recipe = payload?.receita && typeof payload.receita === "object" ? payload.receita : payload;
         elements.modalContent.innerHTML = detailMarkup(recipe);
+        animateRecipeContent();
     } catch (error) {
         elements.modalContent.innerHTML = '<div class="modal-body"><p class="preparation">Nao foi possivel carregar os detalhes desta receita.</p></div>';
     }
