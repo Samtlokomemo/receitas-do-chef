@@ -10,6 +10,14 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="fontawesome/css/all.min.css">
     <link rel="stylesheet" href="css/receitas.css">
+    <script type="importmap">
+    {
+        "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
 </head>
 <body>
         <!-- Botão de Acessibilidade -->
@@ -64,17 +72,25 @@
         </nav>
 
         <section class="hero" aria-labelledby="hero-title">
-            <div class="hero-content">
-                <p class="eyebrow">Cozinha simples, sabor de casa</p>
-                <h1 id="hero-title">Encontre receitas para qualquer momento.</h1>
-                <p class="hero-copy">Busque por pratos doces, salgados ou agridoces e veja ingredientes e preparo em poucos cliques.</p>
-
-                <form class="search-panel" id="search-form" role="search">
-                    <label class="sr-only" for="search-input">Buscar receitas</label>
-                    <i class="fas fa-search" aria-hidden="true"></i>
-                    <input id="search-input" type="search" placeholder="Buscar por nome ou descricao" autocomplete="off">
-                </form>
+        <div class="hero-content">
+            
+            <div class="hero-text-block">
+            <p class="eyebrow">Cozinha simples, sabor de casa</p>
+            <h1 id="hero-title">Encontre receitas para qualquer momento.</h1>
+            <p class="hero-copy">Busque por pratos doces, salgados ou agridoce e veja ingredientes e preparo em poucos cliques.</p>
+            
+            <form class="search-panel" id="search-form" role="search">
+                <label class="sr-only" for="search-input">Buscar receitas</label>
+                <i class="fas fa-search" aria-hidden="true"></i>
+                <input id="search-input" type="search" placeholder="Buscar por nome ou descricao">
+            </form>
             </div>
+
+            <div class="hero-3d-block">
+                <canvas class="canvas-3d"></canvas>
+            </div>
+
+        </div>
         </section>
     </header>
 
@@ -123,5 +139,6 @@
     </footer>
 
     <script src="js/receitas.js"></script>
+    <script type="module" src="js/threejs.js"></script>
 </body>
 </html>

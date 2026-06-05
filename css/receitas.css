@@ -98,10 +98,6 @@ button {
     padding: 54px 0 42px;
 }
 
-.hero-content {
-    max-width: 760px;
-}
-
 .eyebrow,
 .section-kicker {
     margin: 0 0 10px;
@@ -658,4 +654,53 @@ button {
 
 .search-panel input {
     outline: 0;
+}
+
+
+
+/* threejs*/
+.hero-content {
+  display: flex;
+  align-items: center; 
+  justify-content: space-between;
+  gap: 3rem; 
+}
+
+
+.hero-text-block {
+  flex: 1; 
+  padding-right: 2rem;
+}
+
+.hero-3d-block {
+  flex-shrink: 0; 
+  margin-left: auto; 
+  display: flex;
+  justify-content: flex-end; 
+}
+
+.canvas-3d {
+  width: 400px;
+  height: 400px;
+  outline: none;
+}
+
+@media (max-width: 900px) {
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem; 
+  }
+
+  .hero-3d-block {
+    margin-left: 0;        
+    justify-content: center;
+    margin-top: 1rem;        
+    width: 100%;             
+  }
+
+  .canvas-3d {
+    width: 300px;
+    height: 300px;
+  }
 }
