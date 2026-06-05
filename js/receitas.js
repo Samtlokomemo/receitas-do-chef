@@ -42,6 +42,8 @@ const elements = {
     modalContent: document.querySelector("#modal-content"),
 };
 
+const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+
 function debounce(fn, delay = 500) {
     let timer;
     return (...args) => {
@@ -238,6 +240,35 @@ function setError(message) {
     elements.status.textContent = message;
 }
 
+function animateRecipeCards() {
+    const cards = Array.from(elements.grid.querySelectorAll(".recipe-card"));
+
+    if (!cards.length) {
+        return;
+    }
+
+    if (reducedMotionQuery.matches || typeof gsap === "undefined") {
+        cards.forEach((card) => {
+            card.style.opacity = "";
+            card.style.transform = "";
+        });
+        return;
+    }
+
+    gsap.killTweensOf(cards);
+    gsap.fromTo(cards,
+        { autoAlpha: 0, y: 16 },
+        {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.35,
+            stagger: 0.045,
+            ease: "power2.out",
+            clearProps: "opacity,visibility,transform",
+        },
+    );
+}
+
 function renderRecipes(recipes, totalItems) {
   if (!recipes.length) {
     elements.grid.innerHTML = "";
@@ -259,6 +290,8 @@ function renderRecipes(recipes, totalItems) {
       <span class="fav-btn" data-fav-id="${escapeHtml(recipe.id)}" aria-label="Favoritar receita"><i class="${favIcon} fa-heart"></i></span>
     </button>
   `}).join("");
+
+  window.requestAnimationFrame(animateRecipeCards);
 }
 
 function getVisibleRecipes() {
