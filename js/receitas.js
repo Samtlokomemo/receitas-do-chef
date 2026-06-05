@@ -418,18 +418,6 @@ function detailMarkup(recipe) {
     `;
 }
 
-function openModal() {
-    elements.modal.classList.add("open");
-    elements.modal.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
-}
-
-function closeModal() {
-    elements.modal.classList.remove("open");
-    elements.modal.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
-}
-
 async function showRecipeDetails(id) {
     elements.modalContent.innerHTML = '<div class="modal-body"><p class="preparation">Carregando detalhes...</p></div>';
     openModal();
@@ -579,28 +567,120 @@ if(savedTheme){
 // Navegação por teclado
 
 let lastFocusedElement = null;
+let modalAnimation = null;
+let isModalClosing = false;
+
+function shouldAnimateModal() {
+    return Boolean(window.gsap) && !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
+function modalParts() {
+    return {
+        backdrop: elements.modal.querySelector(".modal-backdrop"),
+        card: elements.modal.querySelector(".modal-card"),
+    };
+}
+
+function stopModalAnimation() {
+    if (modalAnimation) {
+        modalAnimation.kill();
+        modalAnimation = null;
+    }
+}
+
+function resetModalAnimationStyles() {
+    const { backdrop, card } = modalParts();
+
+    if (window.gsap) {
+        window.gsap.set([backdrop, card], { clearProps: "all" });
+    }
+}
 
 function openModal() {
+    if (elements.modal.classList.contains("open") && !isModalClosing) {
+        return;
+    }
+
     lastFocusedElement = document.activeElement;
+    isModalClosing = false;
+    stopModalAnimation();
     
     elements.modal.classList.add("open");
     elements.modal.setAttribute("aria-hidden", "false");
+    elements.modal.style.pointerEvents = "";
     document.body.style.overflow = "hidden";
 
-    setTimeout(() => {
+    const focusCloseButton = () => {
         const closeButton = elements.modal.querySelector('.modal-close');
         if (closeButton) closeButton.focus();
-    }, 50);
+    };
+
+    focusCloseButton();
+
+    if (!shouldAnimateModal()) {
+        resetModalAnimationStyles();
+        return;
+    }
+
+    const { backdrop, card } = modalParts();
+
+    modalAnimation = window.gsap.timeline({
+        defaults: { ease: "power2.out" },
+        onComplete: () => {
+            modalAnimation = null;
+        },
+    });
+
+    modalAnimation
+        .fromTo(backdrop, { opacity: 0 }, { opacity: 1, duration: 0.18 })
+        .fromTo(
+            card,
+            { autoAlpha: 0, y: 28, scale: 0.98 },
+            { autoAlpha: 1, y: 0, scale: 1, duration: 0.28 },
+            0.03
+        );
 }
 
 function closeModal() {
-    elements.modal.classList.remove("open");
+    if (!elements.modal.classList.contains("open") || isModalClosing) {
+        return;
+    }
+
+    isModalClosing = true;
+    stopModalAnimation();
     elements.modal.setAttribute("aria-hidden", "true");
+    elements.modal.style.pointerEvents = "none";
     document.body.style.overflow = "";
 
     if (lastFocusedElement) {
         lastFocusedElement.focus();
     }
+
+    const finishClose = () => {
+        elements.modal.classList.remove("open");
+        elements.modal.style.pointerEvents = "";
+        resetModalAnimationStyles();
+        isModalClosing = false;
+    };
+
+    if (!shouldAnimateModal()) {
+        finishClose();
+        return;
+    }
+
+    const { backdrop, card } = modalParts();
+
+    modalAnimation = window.gsap.timeline({
+        defaults: { ease: "power2.inOut" },
+        onComplete: () => {
+            modalAnimation = null;
+            finishClose();
+        },
+    });
+
+    modalAnimation
+        .to(card, { autoAlpha: 0, y: 18, scale: 0.98, duration: 0.2 })
+        .to(backdrop, { opacity: 0, duration: 0.16 }, 0.05);
 }
 
 elements.modal.addEventListener('keydown', (event) => {
