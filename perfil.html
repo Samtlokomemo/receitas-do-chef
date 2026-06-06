@@ -63,13 +63,13 @@
     </header>
 
     <main class="profile-main" id="main-content" tabindex="-1">
-      <div class="profile-card animate-in">
-        <div class="profile-avatar stagger-1" id="profile-avatar"></div>
-        <h1 class="stagger-2" id="profile-name"></h1>
-        <p class="profile-email stagger-3" id="profile-email"></p>
-        <p class="profile-bio stagger-4" id="profile-bio"></p>
+      <div class="profile-card">
+        <div class="profile-avatar" id="profile-avatar"></div>
+        <h1 id="profile-name"></h1>
+        <p class="profile-email" id="profile-email"></p>
+        <p class="profile-bio" id="profile-bio"></p>
         <button
-          class="profile-logout-btn stagger-5"
+          class="profile-logout-btn"
           id="logout-btn"
           type="button"
           aria-label="Sair da conta"
@@ -78,17 +78,17 @@
         </button>
       </div>
 
-      <section class="profile-section animate-in" aria-labelledby="fav-title">
-        <p class="section-kicker stagger-6">Suas receitas</p>
-        <h2 class="stagger-7" id="fav-title">Receitas favoritas</h2>
+      <section class="profile-section" aria-labelledby="fav-title">
+        <p class="section-kicker">Suas receitas</p>
+        <h2 id="fav-title">Receitas favoritas</h2>
         <div
-          class="status-message stagger-8"
+          class="status-message"
           id="fav-status"
           role="status"
           aria-live="polite"
         ></div>
         <div
-          class="recipes-grid stagger-9"
+          class="recipes-grid"
           id="fav-grid"
           aria-label="Receitas favoritas"
         ></div>
@@ -172,10 +172,35 @@
     </script>
     <script src="js/auth.js"></script>
     <script src="js/perfil.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script>
+      gsap.from(".profile-card", {
+        opacity: 0,
+        y: 40,
+        duration: 0.8,
+        ease: "power3.out",
+      });
+      gsap.from(".profile-card > *", {
+        opacity: 0,
+        y: 24,
+        duration: 0.5,
+        stagger: 0.08,
+        ease: "power2.out",
+        delay: 0.3,
+      });
+      gsap.from(".profile-section > *", {
+        opacity: 0,
+        y: 24,
+        duration: 0.5,
+        stagger: 0.08,
+        ease: "power2.out",
+        delay: 0.7,
+      });
+    </script>
     <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
 
     <script src="js/scroll-suave.js"></script>
-  <script src="js/accessibility.js"></script>
-  <script type="module" src="js/threejs-perfil.js"></script>
-</body>
+    <script src="js/accessibility.js"></script>
+    <script type="module" src="js/threejs-perfil.js"></script>
+  </body>
 </html>

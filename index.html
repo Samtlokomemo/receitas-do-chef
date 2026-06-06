@@ -1,188 +1,235 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Receitas do Chef</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="fontawesome/css/all.min.css">
-    <link rel="stylesheet" href="css/receitas.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="fontawesome/css/all.min.css" />
+    <link rel="stylesheet" href="css/receitas.css" />
     <script type="importmap">
-    {
+      {
         "imports": {
-        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
-        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+          "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
         }
-    }
+      }
     </script>
-</head>
-<body> 
-  ... <!-- VLibras -->
-  <div vw class="enabled">
-    <div vw-access-button class="active"></div>
-    <div vw-plugin-wrapper>
-      <div class="vw-plugin-top-wrapper"></div>
+  </head>
+  <body>
+    ...
+    <!-- VLibras -->
+    <div vw class="enabled">
+      <div vw-access-button class="active"></div>
+      <div vw-plugin-wrapper>
+        <div class="vw-plugin-top-wrapper"></div>
+      </div>
     </div>
-  </div>
-  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-  <script>
-    new window.VLibras.Widget('https://vlibras.gov.br/app');
-  </script>
-</body>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+      new window.VLibras.Widget("https://vlibras.gov.br/app");
+    </script>
+  </body>
 
-<body>
-        <!-- Botão de Acessibilidade -->
-<button id="accessibility-btn" class="accessibility-btn">
-    <i class="fas fa-universal-access"></i>
-</button>
+  <body>
+    <!-- Botão de Acessibilidade -->
+    <button id="accessibility-btn" class="accessibility-btn">
+      <i class="fas fa-universal-access"></i>
+    </button>
 
-<!-- Painel -->
-<div id="accessibility-panel" class="accessibility-panel">
-
-    <div class="panel-header">
+    <!-- Painel -->
+    <div id="accessibility-panel" class="accessibility-panel">
+      <div class="panel-header">
         <h3>Acessibilidade</h3>
 
         <button id="close-panel">
-            <i class="fas fa-times"></i>
+          <i class="fas fa-times"></i>
         </button>
-    </div>
+      </div>
 
-    <div class="panel-content">
-
-        <div class="section-title">
-            Ajuste de Cor
-        </div>
+      <div class="panel-content">
+        <div class="section-title">Ajuste de Cor</div>
 
         <button class="access-option" onclick="setTheme('default')">
-            Modo Padrão
+          Modo Padrão
         </button>
 
         <button class="access-option" onclick="setTheme('dark')">
-            Modo Escuro
+          Modo Escuro
         </button>
 
         <button class="access-option" onclick="setTheme('contrast-light')">
-            Alto Contraste Claro
+          Alto Contraste Claro
         </button>
 
         <button class="access-option" onclick="setTheme('contrast-dark')">
-            Alto Contraste Escuro
+          Alto Contraste Escuro
         </button>
         <div class="panel-content">
-
-    
-    <div class="section-title" style="margin-top: 20px;">Tamanho da Fonte</div>
-    <button class="access-option" onclick="alterarFonte('aumentar')" aria-label="Aumentar tamanho do texto">
-        Aumentar Fonte <i class="fas fa-plus" aria-hidden="true"></i>
-    </button>
-    <button class="access-option" onclick="alterarFonte('diminuir')" aria-label="Diminuir tamanho do texto">
-        Diminuir Fonte <i class="fas fa-minus" aria-hidden="true"></i>
-    </button>
-    <button class="access-option" onclick="alterarFonte('resetar')" aria-label="Restaurar tamanho padrão">
-        Tamanho Padrão
-    </button>
+          <div class="section-title" style="margin-top: 20px">
+            Tamanho da Fonte
+          </div>
+          <button
+            class="access-option"
+            onclick="alterarFonte('aumentar')"
+            aria-label="Aumentar tamanho do texto"
+          >
+            Aumentar Fonte <i class="fas fa-plus" aria-hidden="true"></i>
+          </button>
+          <button
+            class="access-option"
+            onclick="alterarFonte('diminuir')"
+            aria-label="Diminuir tamanho do texto"
+          >
+            Diminuir Fonte <i class="fas fa-minus" aria-hidden="true"></i>
+          </button>
+          <button
+            class="access-option"
+            onclick="alterarFonte('resetar')"
+            aria-label="Restaurar tamanho padrão"
+          >
+            Tamanho Padrão
+          </button>
+        </div>
+      </div>
     </div>
-
-    </div>
-
-</div>
-    <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
+    <a href="#main-content" class="skip-link"
+      >Pular para o conteúdo principal</a
+    >
     <header class="site-header">
-        <nav class="topbar" aria-label="Navegacao principal">
-            <a class="brand" href="index.html" aria-label="Receitas do Chef">
-                <span class="brand-mark"><i class="fas fa-utensils" aria-hidden="true"></i></span>
-                <span>Receitas do Chef</span>
-            </a>
-            <a class="login-link" href="login.html">Login</a>
-        </nav>
+      <nav class="topbar" aria-label="Navegacao principal">
+        <a class="brand" href="index.html" aria-label="Receitas do Chef">
+          <span class="brand-mark"
+            ><i class="fas fa-utensils" aria-hidden="true"></i
+          ></span>
+          <span>Receitas do Chef</span>
+        </a>
+        <a class="login-link" href="login.html">Login</a>
+      </nav>
 
-        <section class="hero" aria-labelledby="hero-title">
+      <section class="hero" aria-labelledby="hero-title">
         <div class="hero-content">
-            
-            <div class="hero-text-block">
+          <div class="hero-text-block">
             <p class="eyebrow">Cozinha simples, sabor de casa</p>
             <h1 id="hero-title">Encontre receitas para qualquer momento.</h1>
-            <p class="hero-copy">Busque por pratos doces, salgados ou agridoce e veja ingredientes e preparo em poucos cliques.</p>
-            
+            <p class="hero-copy">
+              Busque por pratos doces, salgados ou agridoce e veja ingredientes
+              e preparo em poucos cliques.
+            </p>
+
             <form class="search-panel" id="search-form" role="search">
-                <label class="sr-only" for="search-input">Buscar receitas</label>
-                <i class="fas fa-search" aria-hidden="true"></i>
-                <input id="search-input" type="search" placeholder="Buscar por nome ou descricao">
+              <label class="sr-only" for="search-input">Buscar receitas</label>
+              <i class="fas fa-search" aria-hidden="true"></i>
+              <input
+                id="search-input"
+                type="search"
+                placeholder="Buscar por nome ou descricao"
+              />
             </form>
-            </div>
+          </div>
 
-            <div class="hero-3d-block">
-                <canvas class="canvas-3d"></canvas>
-            </div>
-
+          <div class="hero-3d-block">
+            <canvas class="canvas-3d"></canvas>
+          </div>
         </div>
-        </section>
+      </section>
     </header>
 
     <main class="main-content" id="main-content" tabindex="-1">
-        <section class="toolbar" aria-label="Filtros de receitas">
-            <div>
-                <p class="section-kicker">Catalogo</p>
-                <h2>Receitas recentes</h2>
-            </div>
-            <div class="filter-pills" id="filter-pills" role="list" aria-label="Filtrar por tipo">
-                <button class="pill active" type="button" data-type="todos">Todos</button>
-                <button class="pill" type="button" data-type="doce">Doce</button>
-                <button class="pill" type="button" data-type="salgado">Salgado</button>
-                <button class="pill" type="button" data-type="agridoce">Agridoce</button>
-            </div>
-        </section>
+      <section class="toolbar" aria-label="Filtros de receitas">
+        <div>
+          <p class="section-kicker">Catalogo</p>
+          <h2>Receitas recentes</h2>
+        </div>
+        <div
+          class="filter-pills"
+          id="filter-pills"
+          role="list"
+          aria-label="Filtrar por tipo"
+        >
+          <button class="pill active" type="button" data-type="todos">
+            Todos
+          </button>
+          <button class="pill" type="button" data-type="doce">Doce</button>
+          <button class="pill" type="button" data-type="salgado">
+            Salgado
+          </button>
+          <button class="pill" type="button" data-type="agridoce">
+            Agridoce
+          </button>
+        </div>
+      </section>
 
-        <div class="status-message" id="status-message" role="status" aria-live="polite"></div>
-        <section class="recipes-grid" id="recipes-grid" aria-label="Lista de receitas"></section>
+      <div
+        class="status-message"
+        id="status-message"
+        role="status"
+        aria-live="polite"
+      ></div>
+      <section
+        class="recipes-grid"
+        id="recipes-grid"
+        aria-label="Lista de receitas"
+      ></section>
 
-        <nav class="pagination-bar" aria-label="Paginacao de receitas">
-            <button class="page-btn" id="prev-page" type="button">
-                <i class="fas fa-chevron-left" aria-hidden="true"></i>
-                Anterior
-            </button>
-            <span id="page-indicator">Pagina 1</span>
-            <button class="page-btn" id="next-page" type="button">
-                Proxima
-                <i class="fas fa-chevron-right" aria-hidden="true"></i>
-            </button>
-        </nav>
+      <nav class="pagination-bar" aria-label="Paginacao de receitas">
+        <button class="page-btn" id="prev-page" type="button">
+          <i class="fas fa-chevron-left" aria-hidden="true"></i>
+          Anterior
+        </button>
+        <span id="page-indicator">Pagina 1</span>
+        <button class="page-btn" id="next-page" type="button">
+          Proxima
+          <i class="fas fa-chevron-right" aria-hidden="true"></i>
+        </button>
+      </nav>
     </main>
 
     <div class="recipe-modal" id="recipe-modal" aria-hidden="true">
-        <div class="modal-backdrop" data-close-modal></div>
-        <article class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-            <button class="modal-close" type="button" data-close-modal aria-label="Fechar detalhes">
-                <i class="fas fa-times" aria-hidden="true"></i>
-            </button>
-            <div id="modal-content"></div>
-        </article>
+      <div class="modal-backdrop" data-close-modal></div>
+      <article
+        class="modal-card"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-title"
+      >
+        <button
+          class="modal-close"
+          type="button"
+          data-close-modal
+          aria-label="Fechar detalhes"
+        >
+          <i class="fas fa-times" aria-hidden="true"></i>
+        </button>
+        <div id="modal-content"></div>
+      </article>
     </div>
 
     <footer class="site-footer">
-        <p>Receitas do Chef - uma selecao minimalista para cozinhar melhor.</p>
+      <p>Receitas do Chef - uma selecao minimalista para cozinhar melhor.</p>
     </footer>
 
     <script src="js/auth.js"></script>
     <script src="js/receitas.js"></script>
     <script type="module" src="js/threejs.js"></script>
- 
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="js/hero.js"></script>
     <script>
       gsap.registerPlugin(ScrollTrigger);
 
-      const gridReceitas = document.getElementById('recipes-grid');
+      const gridReceitas = document.getElementById("recipes-grid");
 
       if (gridReceitas) {
-        
         function rodarAnimacao() {
-          
-          ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+          ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
 
           gsap.set("#recipes-grid > *", { opacity: 0, y: 40 });
 
@@ -190,24 +237,22 @@
             scrollTrigger: {
               trigger: "#recipes-grid",
               start: "top 90%",
-              toggleActions: "play none none none"
+              toggleActions: "play none none none",
             },
-            y: 0,              
-            opacity: 1,        
-            duration: 0.6,     
-            stagger: 0.1,      
+            y: 0,
+            opacity: 1,
+            duration: 0.6,
+            stagger: 0.1,
             ease: "power2.out",
-            clearProps: "all"  
+            clearProps: "all",
           });
         }
 
-        
         const observer = new MutationObserver((mutationsList) => {
           if (gridReceitas.children.length > 0) {
-        
             setTimeout(() => {
               rodarAnimacao();
-              ScrollTrigger.refresh(); 
+              ScrollTrigger.refresh();
             }, 100);
           }
         });
@@ -217,8 +262,7 @@
     </script>
     <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
 
-<script src="js/scroll-suave.js"></script>   
+    <script src="js/scroll-suave.js"></script>
     <script src="js/accessibility.js"></script>
-    
-</body>
+  </body>
 </html>
