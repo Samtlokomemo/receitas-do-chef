@@ -48,7 +48,7 @@ git clone https://github.com/Samtlokomemo/projeto-acessivel.git
 
 > **Nota:** Para que o Three.js funcione corretamente via ES Modules, o projeto precisa ser servido por um servidor HTTP local (ex: extensão Live Server no VS Code, ou `python3 -m http.server`). Abrir o arquivo diretamente (`file://`) pode bloquear os imports.
 
-O projeto também pode ser acessado diretamente pelo [GitHub Pages](https://samtlokomemo.github.io/projeto-acessivel/).
+O projeto também pode ser acessado diretamente pelo [GitHub Pages](https://samtlokomemo.github.io/receitas-do-chef/).
 
 ## Tecnologias Utilizadas
 
