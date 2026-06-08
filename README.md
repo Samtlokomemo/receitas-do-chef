@@ -64,7 +64,7 @@ O projeto também pode ser acessado diretamente pelo [GitHub Pages](https://samt
 ## Equipe
 
 - [Samuel Rocha](https://github.com/Samtlokomemo) — Implementação da navegação por teclado e modelo 3D via Three.js
-- [Ingrid Vitória](https://github.com/Ingrid-Vitoriaa) — Implementação da ferramenta VLibras e animação de carregamento dos cards via GSAP
+- [Ingrid Vitória](https://github.com/Ingrid-Vitoriaa) — Implementação da ferramenta VLibras e animação de carregamento dos cards via GSAP e ScrollTrigger
 - [Pedro Santos](https://github.com/Pedrosmn) — Implementação da API e animação dos modais via GSAP
 - [Hugo Ryan](https://github.com/hugo-ryan) — Implementação do modo alto contraste
 - [Gustavo Lins](https://github.com/BABABEA-0) — Implementação da alteração de tamanho da fonte
